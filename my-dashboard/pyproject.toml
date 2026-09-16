@@ -1,0 +1,13 @@
+[project]
+name = "my-dashboard"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "dash>=4.4.1",
+    "dash-ag-grid>=35.3.0",
+    "dash-bootstrap-components>=2.0.4",
+    "numpy>=2.5.3",
+    "pandas>=3.0.5",
+    "plotly>=7.1.0",
+    "statsmodels>=0.15.0",
+]
