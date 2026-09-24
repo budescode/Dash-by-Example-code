@@ -1,7 +1,8 @@
 import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
 stocks = px.data.stocks()   # built-in dataset: ships with plotly
-
-
 # line chart
 gapminder = px.data.gapminder()
 fig = px.line(
@@ -81,3 +82,15 @@ fig = px.scatter(
     title='Tips vs Total Bill', template='plotly_white'
 )
 fig.show()
+
+# pie chart 
+fig = px.pie(
+    tips, values='total_bill', names='day',
+    hole=0.4, title='Revenue Share by Day'
+)
+fig.update_traces(textposition='inside', textinfo='percent+label')
+total = tips['total_bill'].sum()
+fig.add_annotation(text=f'${total:,.0f}', x=0.5, y=0.5,
+                   showarrow=False, font_size=28)
+fig.show()
+
