@@ -161,3 +161,39 @@ fig = px.scatter(
 )
 fig.show()
 
+# Customising Any Chart
+daily = tips.groupby('day', as_index=False)['total_bill'].sum()
+fig = px.bar(
+    daily, x='day', y='total_bill',
+    labels={'total_bill': 'Revenue ($)', 'day': 'Day of Week'},
+    category_orders={'day': ['Thur','Fri','Sat','Sun']},
+    color='day',
+    color_discrete_sequence=px.colors.qualitative.Set2,
+    hover_data={'total_bill': ':$,.2f'},
+    template='plotly_white'
+)
+fig.update_layout(
+    title_font_size=18, plot_bgcolor='white',
+    paper_bgcolor='white',
+    font=dict(family='Arial', size=12),
+    legend_title_text='',
+    legend=dict(orientation='h', yanchor='bottom', y=1.02, x=0),
+    margin=dict(l=40, r=20, t=60, b=40),
+    hovermode='x unified'
+)
+fig.update_traces(marker_line_width=0, opacity=0.85)
+fig.update_xaxes(showgrid=False, tickangle=-45)  # rotate crowded labels
+fig.update_yaxes(gridcolor='#EEEEEE', tickprefix='$', tickformat=',.0f')
+fig.add_hline(y=1000, line_dash='dash', annotation_text='Daily Target')
+fig.show()
+
+# hover
+daily = tips.groupby('day', as_index=False).agg(
+    total_bill=('total_bill', 'sum'), orders=('total_bill', 'size'))
+fig = px.bar(daily, x='day', y='total_bill',
+             custom_data=['orders'])
+fig.update_traces(hovertemplate=(
+    '<b>%{x}</b><br>Revenue: $%{y:,.2f}'
+    '<br>Orders: %{customdata[0]}<extra></extra>'))
+fig.show()
+
