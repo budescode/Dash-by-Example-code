@@ -15,6 +15,8 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.FLATLY])
  
 app.layout = dbc.Container([
     html.H4('Sales by Region', className='mt-3'),
+    html.P('Select a region and watch the chart change.',
+           className='text-muted'),
     dcc.Dropdown(
         id='region-filter',
         options=[{'label': r, 'value': r} for r in df['Region'].unique()],
