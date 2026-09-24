@@ -108,3 +108,16 @@ fig = px.choropleth(
 )
 fig.show()
 
+# scatter_map
+carshare = px.data.carshare()
+fig = px.scatter_map(
+    carshare,
+    lat='centroid_lat', lon='centroid_lon',
+    color='peak_hour', size='car_hours',
+    color_continuous_scale=px.colors.cyclical.IceFire,
+    size_max=15, zoom=10,
+    map_style='open-street-map',
+    title='Montreal Car-Share Availability'
+)
+fig.show()
+
