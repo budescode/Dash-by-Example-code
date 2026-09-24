@@ -140,3 +140,13 @@ fig = px.funnel(
 # fig.update_traces(textinfo='value+percent initial')   # % of the first stage on each bar
 fig.show()
 
+# heatmaps
+tips = px.data.tips()
+corr = tips[['total_bill','tip','size']].corr()
+fig = px.imshow(
+    corr, text_auto='.2f',
+    color_continuous_scale='RdBu_r',
+    title='Correlation Heatmap'
+)
+fig.show() 
+
