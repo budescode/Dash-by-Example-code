@@ -11,6 +11,9 @@ df = pd.DataFrame({
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.FLATLY])
  
 app.layout = dbc.Container([
+    html.P('Type a colour, then press Search. Typing alone changes '
+           'nothing; only the button triggers the callback.',
+           className='text-muted mt-3'),
     dbc.Input(id='search-input',
               placeholder='Search products, e.g. red, blue, green',
               type='text', className='mt-3'),
