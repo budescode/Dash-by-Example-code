@@ -94,3 +94,17 @@ fig.add_annotation(text=f'${total:,.0f}', x=0.5, y=0.5,
                    showarrow=False, font_size=28)
 fig.show()
 
+# Choropleth Maps
+gap = px.data.gapminder().query("year == 2007")
+fig = px.choropleth(
+    gap,
+    locations='country',            # region column in the dataframe
+    locationmode='country names',   # how to read it; 4 modes below
+    #   'ISO-3' (default)  'country names'  'USA-states'  'geojson-id'
+    color='lifeExp',
+    hover_name='country',
+    color_continuous_scale='Viridis',
+    title='Life Expectancy by Country (2007)'
+)
+fig.show()
+
