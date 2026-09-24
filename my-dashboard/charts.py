@@ -197,3 +197,19 @@ fig.update_traces(hovertemplate=(
     '<br>Orders: %{customdata[0]}<extra></extra>'))
 fig.show()
 
+# go objects
+stocks = px.data.stocks()
+weekly_change = stocks['GOOG'].pct_change() * 100
+fig = make_subplots(
+    rows=2, cols=1, shared_xaxes=True,
+    row_heights=[0.7, 0.3], vertical_spacing=0.05
+)
+fig.add_trace(go.Scatter(x=stocks['date'], y=stocks['GOOG'],
+                         name='GOOG', line=dict(color='#00B4D8')),
+              row=1, col=1)
+fig.add_trace(go.Bar(x=stocks['date'], y=weekly_change,
+                     name='Weekly % Change'),
+              row=2, col=1)
+fig.update_layout(title='Price and Weekly Change - One Figure',
+                  template='plotly_white', height=500)
+fig.show()
