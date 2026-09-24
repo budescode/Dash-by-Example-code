@@ -150,3 +150,14 @@ fig = px.imshow(
 )
 fig.show() 
 
+# facets
+fig = px.scatter(
+    tips, x='total_bill', y='tip',
+    color='smoker', facet_col='day',
+    # facet_col_wrap=2,   # wrap the 4 panels into a 2x2 grid
+    category_orders={'day': ['Thur','Fri','Sat','Sun']},
+    title='Tips by Day - Small Multiples',
+    template='plotly_white'
+)
+fig.show()
+
