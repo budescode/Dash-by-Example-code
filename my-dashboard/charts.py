@@ -131,3 +131,12 @@ fig = px.scatter(
 )
 fig.show()
 
+# funnel charts
+fig = px.funnel(
+    x=[100000, 42000, 18000, 9500, 7200],
+    y=['Visitors','Views','Cart','Checkout','Purchase'],
+    title='Customer Acquisition Funnel'
+)
+# fig.update_traces(textinfo='value+percent initial')   # % of the first stage on each bar
+fig.show()
+
