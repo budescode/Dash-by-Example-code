@@ -121,3 +121,13 @@ fig = px.scatter_map(
 )
 fig.show()
 
+# animated charts
+gapminder = px.data.gapminder()   # full dataset, all years 
+fig = px.scatter(
+    gapminder, x='gdpPercap', y='lifeExp',
+    size='pop', color='continent', hover_name='country',
+    animation_frame='year', log_x=True, size_max=55,
+    range_y=[25, 90], title='Life Expectancy vs GDP per Capita'
+)
+fig.show()
+
