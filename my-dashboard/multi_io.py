@@ -16,6 +16,8 @@ df = pd.DataFrame({
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.FLATLY])
  
 app.layout = dbc.Container([
+    html.P('Pick a region or a date range and watch the KPI and '
+           'both charts update together.', className='text-muted mt-3'),
     dcc.Dropdown(id='region-filter',
                  options=[{'label': r, 'value': r}
                           for r in df['Region'].unique()],
@@ -53,4 +55,3 @@ def update_all(region, start, end):
  
 if __name__ == '__main__':
     app.run(debug=True)
- 
