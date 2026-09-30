@@ -1,0 +1,11 @@
+[project]
+name = "market-monitor-dashboard"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "dash>=4.4.1",
+    "dash-bootstrap-components>=2.0.4",
+    "pandas>=3.0.6",
+    "plotly>=7.1.0",
+    "yfinance>=1.7.0",
+]
