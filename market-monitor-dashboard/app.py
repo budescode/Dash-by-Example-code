@@ -15,6 +15,7 @@ app = dash.Dash(
         dbc.icons.FONT_AWESOME,
     ]
 )
+
 def get_ohlcv(ticker: str, period: str = '6mo') -> pd.DataFrame:
     """Download OHLCV price history for one ticker.
  
@@ -85,7 +86,6 @@ def candlestick_fig(df, ticker):
                       height=550, hovermode='x unified')
     return fig
 
-
 app.layout = dbc.Container([
     dcc.Interval(id='timer', interval=60_000, n_intervals=0),
  
@@ -106,7 +106,13 @@ app.layout = dbc.Container([
         ], color='success', className='mt-4 fs-6'), md=2),
     ]),
  
-    dbc.Row([dbc.Col(dcc.Graph(id='candle-chart'), md=12)], className='mt-2'),
+    dbc.Row([dbc.Col(dcc.Loading(
+        dcc.Graph(id='candle-chart'),
+        type='circle',
+        delay_show=400,   # skip the spinner when the fetch is quick
+        # keep the current chart on screen, dimmed, while loading
+        overlay_style={'visibility': 'visible', 'opacity': 0.4},
+    ), md=12)], className='mt-2'),
  
     dbc.Row([
         dbc.Col([
@@ -118,9 +124,12 @@ app.layout = dbc.Container([
         ], md=6),
     ], className='mt-3'),
  
-    dbc.Row([dbc.Col(dcc.Graph(id='compare-chart'), md=12)], className='mt-2'),
+    dbc.Row([dbc.Col(dcc.Loading(
+        dcc.Graph(id='compare-chart'),
+        type='circle', delay_show=400,
+        overlay_style={'visibility': 'visible', 'opacity': 0.4},
+    ), md=12)], className='mt-2'),
 ], fluid=True)
-
 
 # Rebuild the candlestick chart. Triggers every 60s (the timer)
 # and whenever the ticker or period changes.
