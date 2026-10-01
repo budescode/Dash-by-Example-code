@@ -5,3 +5,4 @@ superstore-dashboard/data/*
 !superstore-dashboard/data/README.md
 ecommerce-hub-dashboard/data/*
 !ecommerce-hub-dashboard/data/README.md
+*.db
