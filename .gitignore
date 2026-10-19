@@ -6,3 +6,6 @@ superstore-dashboard/data/*
 ecommerce-hub-dashboard/data/*
 !ecommerce-hub-dashboard/data/README.md
 *.db
+deployment/plotly-cloud.toml
+deployment/uv.lock
+deployment/pyproject.toml
