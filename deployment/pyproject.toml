@@ -1,0 +1,8 @@
+[project]
+name = "deployment"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "dash[cloud]>=4.4.1",
+    "gunicorn>=26.2.0",
+]

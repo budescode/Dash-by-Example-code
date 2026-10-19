@@ -8,4 +8,3 @@ ecommerce-hub-dashboard/data/*
 *.db
 deployment/plotly-cloud.toml
 deployment/uv.lock
-deployment/pyproject.toml
